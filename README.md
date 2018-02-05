@@ -1,2 +1,0 @@
-# BetaLifestyle
-Eshopping Website
