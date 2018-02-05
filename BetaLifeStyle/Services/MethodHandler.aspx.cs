@@ -207,7 +207,7 @@ namespace BetaLifeStyle.Services
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
                 smtp.EnableSsl = true;
-                NetworkCredential NetworkCred = new NetworkCredential("betagymstyle@gmail.com", "B3t4gymstyl3");
+                NetworkCredential NetworkCred = new NetworkCredential("betagymstyle@gmail.com", "password");
                 smtp.UseDefaultCredentials = false;
                 smtp.Credentials = NetworkCred;
                 smtp.Port = 587;
@@ -237,7 +237,7 @@ namespace BetaLifeStyle.Services
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
                 smtp.EnableSsl = true;
-                NetworkCredential NetworkCred = new NetworkCredential("betagymstyle@gmail.com", "B3t4gymstyl3");
+                NetworkCredential NetworkCred = new NetworkCredential("betagymstyle@gmail.com", "pass");
                 smtp.UseDefaultCredentials = false;
                 smtp.Credentials = NetworkCred;
                 smtp.Port = 587;
