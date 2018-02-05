@@ -1,0 +1,323 @@
+﻿/*
+    Primary Color           #2874F0
+    Primary Dark Color      #0F5BD6
+    Accented Color          #F7E830
+
+    Text Color              #EEEEEE
+*/
+
+.white {
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+}
+
+
+.navbar {
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    background-color: #2874F0; /*Header Back Color*/
+    font-size: 12px;
+    color: #FFFFFF;
+}
+
+    /* Master Page Dropdown List Items*/
+    .navbar ul .dropdown ul li a:hover {
+        color: #000 !important;
+        background-color: #eeeeee;
+    }
+
+.sidebarsubcategory {
+    color: #666;
+    cursor: pointer;
+    text-transform: capitalize;
+    margin-left: 16px;
+    display: block
+}
+
+    .sidebarsubcategory:hover {
+        color: #2874F0;
+    }
+
+.categories a:hover {
+    text-decoration: none;
+}
+
+.categories a:link {
+    text-decoration: none;
+}
+
+.categories a:active {
+    text-decoration: none;
+}
+
+.categories a:visited {
+    text-decoration: none;
+}
+
+.product {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    background-color: white;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e1e1e1;
+    
+}
+
+
+.productdescription {
+    text-align: left;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.productimagessmall {
+    height: 70px;
+    margin: 5px;
+}
+
+ol.breadcrumb {
+    border-radius: 0px;
+    background-color: white;
+    font-size: 10px;
+    margin-bottom: 5px;
+    padding-left: 0px;
+}
+
+    ol.breadcrumb li a {
+        text-decoration: none !important;
+    }
+
+.productimage {
+    width: 100%;
+    height: 250px;
+    margin-top: auto;
+    border: 1px solid #f3f3f3;
+    object-fit: scale-down; /* Do not scale the image */
+    object-position: center;
+}
+
+
+.productimagecart {
+    width: auto;
+    height: 180px;
+    margin-top: auto;
+    border: 1px solid #f3f3f3;
+    object-fit: scale-down; /* Do not scale the image */
+    object-position: center;
+}
+
+.center-cropped {
+  
+}
+
+.productgrid {
+    display: grid;
+    /*grid-template-columns: 33.33% 33.33% 33.33%;   25% 25% 25% 25%*/
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 2fr));
+    
+}
+
+.productview {
+
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 3fr;
+}
+
+
+.productimages {
+    grid-column: 1/2;
+    background-color: white;
+    height: auto !important;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.productdetails {
+    grid-column: 2/3;
+    background-color: white;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px
+}
+
+@media (max-width: 768px) 
+{
+    .productview {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 1fr;
+        grid-template-areas: "product_images" "product_details";
+    }
+
+    .productimages {
+        grid-area: product_images;
+        background-color: white;
+        height: auto !important;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .productdetails {
+        grid-area:product_details;
+        background-color: white;
+        padding-top: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px
+    }
+
+}
+
+.buybtnproductpage {
+    padding: 6px; padding-left: 12px; padding-right: 12px; background-color: #333; color: #f1f1f1; border: 1px solid #333; border-radius: 0; transition: .2s;
+}
+
+    .buybtnproductpage:hover, .buybtnproductpage:focus {
+        border: 1px solid #333;
+        background-color: #fff;
+        color: #000;
+    }
+
+.productcontenttitle {
+    color: #939393;
+    font-size: 10px;
+    display: block;
+    margin-top: 20px;
+}
+
+.buybtn {
+    padding: 6px;
+    background-color: #333;
+    color: #f1f1f1;
+    border: 1px solid #333;
+    border-radius: 0;
+    transition: .2s;
+}
+
+    .buybtn:hover, .buybtn:focus {
+        border: 1px solid #333;
+        text-decoration: none;
+        background-color: #fff;
+        color: #000;
+    }
+
+.dropdownlist {
+    padding: 6px;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #333;
+    border-radius: 0;
+    transition: .2s;
+}
+
+
+
+    .dropdownlist:hover, .dropdownlist:focus {
+        border: 1px solid #000;
+        background-color: #fff;
+    }
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.clearmp {
+    margin: 0px;
+    padding: 0px;
+}
+
+.clearp {
+    padding: 0px;
+}
+
+.clearm {
+    margin: 0px;
+}
+
+.xhr {
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-bottom: 15px;
+}
+
+
+
+body {
+    background-color: #eeeeee;
+}
+
+.dropdown .open > .dropdown-toggle {
+    background-color: transparent;
+    color: #F7E830 !important;
+}
+
+.navbar .navbar-nav a {
+    color: #EEEEEE;
+}
+
+.navbar-brand {
+    color: #EEEEEE;
+}
+
+.dropdown-toggle:active, .open .dropdown-toggle {
+    background-color: #0F5BD6 !important;
+    color: #F7E830 !important;
+}
+
+.dropdown-toggle:active, .open .dropdown-toggle {
+    background-color: #0F5BD6 !important;
+    color: #F7E830 !important;
+}
+
+@media (max-width: 768px) {
+    .dropdown-menu {
+        width: 100% !important;
+    }
+
+    .vertical-alignment-helper {
+        display: table;
+        height: 100%;
+        width: 100%;
+        pointer-events: none;
+    }
+}
+
+.dropdown-menu {
+    width: 250px;
+}
+
+
+/* hover on navbar brand*/
+.navbar-brand:hover {
+    color: #F7E830;
+}
+
+/* hover on link a in navbar*/
+.navbar-nav li a:hover {
+    color: #F7E830 !important;
+    background-color: transparent;
+}
+
+.navbar-toggle .icon-bar {
+    color: #FFF !important;
+    border: 1px solid white;
+}
+
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width: inherit;
+    height: inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events: all;
+}
