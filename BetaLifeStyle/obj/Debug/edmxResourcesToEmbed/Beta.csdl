@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BetaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BetaDB" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Carts" EntityType="BetaModel.Cart" />
+    <EntitySet Name="GUIDs" EntityType="BetaModel.GUID" />
+    <EntitySet Name="Logins" EntityType="BetaModel.Login" />
+    <EntitySet Name="OrderDetails" EntityType="BetaModel.OrderDetail" />
+    <EntitySet Name="Payments" EntityType="BetaModel.Payment" />
+    <EntitySet Name="Products" EntityType="BetaModel.Product" />
+    <EntitySet Name="ProductCategories" EntityType="BetaModel.ProductCategory" />
+    <EntitySet Name="ProductImages" EntityType="BetaModel.ProductImage" />
+    <EntitySet Name="ProductSizes" EntityType="BetaModel.ProductSize" />
+    <EntitySet Name="ProductSubCategories" EntityType="BetaModel.ProductSubCategory" />
+    <EntitySet Name="Stocks" EntityType="BetaModel.Stock" />
+    <AssociationSet Name="FK_Cart_Login" Association="BetaModel.FK_Cart_Login">
+      <End Role="Login" EntitySet="Logins" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_Product" Association="BetaModel.FK_Cart_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GUID_Login" Association="BetaModel.FK_GUID_Login">
+      <End Role="Login" EntitySet="Logins" />
+      <End Role="GUID" EntitySet="GUIDs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Login" Association="BetaModel.FK_OrderDetails_Login">
+      <End Role="Login" EntitySet="Logins" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Login" Association="BetaModel.FK_Payment_Login">
+      <End Role="Login" EntitySet="Logins" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Product" Association="BetaModel.FK_OrderDetails_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProducImgTbl_ProductTbl" Association="BetaModel.FK_ProducImgTbl_ProductTbl">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductImage" EntitySet="ProductImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductStock_Product" Association="BetaModel.FK_ProductStock_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Stock" EntitySet="Stocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductTbl_ProductCategoriesTbl" Association="BetaModel.FK_ProductTbl_ProductCategoriesTbl">
+      <End Role="ProductCategory" EntitySet="ProductCategories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductTbl_ProductSubCategoriesTbl" Association="BetaModel.FK_ProductTbl_ProductSubCategoriesTbl">
+      <End Role="ProductSubCategory" EntitySet="ProductSubCategories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductSubCategoriesTbl_ProductCategoriesTbl" Association="BetaModel.FK_ProductSubCategoriesTbl_ProductCategoriesTbl">
+      <End Role="ProductCategory" EntitySet="ProductCategories" />
+      <End Role="ProductSubCategory" EntitySet="ProductSubCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductSizeTbl_ProductCategoriesTbl" Association="BetaModel.FK_ProductSizeTbl_ProductCategoriesTbl">
+      <End Role="ProductSubCategory" EntitySet="ProductSubCategories" />
+      <End Role="ProductSize" EntitySet="ProductSizes" />
+    </AssociationSet>
+    <EntitySet Name="Profiles" EntityType="BetaModel.Profile" />
+    <AssociationSet Name="FK_Profile_Login" Association="BetaModel.FK_Profile_Login">
+      <End Role="Login" EntitySet="Logins" />
+      <End Role="Profile" EntitySet="Profiles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <NavigationProperty Name="Login" Relationship="BetaModel.FK_Cart_Login" FromRole="Cart" ToRole="Login" />
+    <NavigationProperty Name="Product" Relationship="BetaModel.FK_Cart_Product" FromRole="Cart" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="GUID">
+    <Key>
+      <PropertyRef Name="UniqueId" />
+    </Key>
+    <Property Name="UniqueId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="Purpose" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Login" Relationship="BetaModel.FK_GUID_Login" FromRole="GUID" ToRole="Login" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="Islocked" Type="Boolean" />
+    <Property Name="UserRole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Carts" Relationship="BetaModel.FK_Cart_Login" FromRole="Login" ToRole="Cart" />
+    <NavigationProperty Name="GUIDs" Relationship="BetaModel.FK_GUID_Login" FromRole="Login" ToRole="GUID" />
+    <NavigationProperty Name="OrderDetails" Relationship="BetaModel.FK_OrderDetails_Login" FromRole="Login" ToRole="OrderDetail" />
+    <NavigationProperty Name="Payments" Relationship="BetaModel.FK_Payment_Login" FromRole="Login" ToRole="Payment" />
+    <NavigationProperty Name="Profiles" Relationship="BetaModel.FK_Profile_Login" FromRole="Login" ToRole="Profile" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Login" Relationship="BetaModel.FK_OrderDetails_Login" FromRole="OrderDetail" ToRole="Login" />
+    <NavigationProperty Name="Product" Relationship="BetaModel.FK_OrderDetails_Product" FromRole="OrderDetail" ToRole="Product" />
+    <Property Name="Size" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Subtotal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Shipping" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Tax" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="AddedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Login" Relationship="BetaModel.FK_Payment_Login" FromRole="Payment" ToRole="Login" />
+    <Property Name="ShippingAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ProductPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="ProductDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ProductBrandName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ProductWeight" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ProductColor" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ProductAddDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ProductCatID" Type="Int32" Nullable="false" />
+    <Property Name="ProductSubCatID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Carts" Relationship="BetaModel.FK_Cart_Product" FromRole="Product" ToRole="Cart" />
+    <NavigationProperty Name="OrderDetails" Relationship="BetaModel.FK_OrderDetails_Product" FromRole="Product" ToRole="OrderDetail" />
+    <NavigationProperty Name="ProductImages" Relationship="BetaModel.FK_ProducImgTbl_ProductTbl" FromRole="Product" ToRole="ProductImage" />
+    <NavigationProperty Name="Stocks" Relationship="BetaModel.FK_ProductStock_Product" FromRole="Product" ToRole="Stock" />
+    <NavigationProperty Name="ProductCategory" Relationship="BetaModel.FK_ProductTbl_ProductCategoriesTbl" FromRole="Product" ToRole="ProductCategory" />
+    <NavigationProperty Name="ProductSubCategory" Relationship="BetaModel.FK_ProductTbl_ProductSubCategoriesTbl" FromRole="Product" ToRole="ProductSubCategory" />
+  </EntityType>
+  <EntityType Name="ProductCategory">
+    <Key>
+      <PropertyRef Name="ProductCatID" />
+    </Key>
+    <Property Name="ProductCatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductCatName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="BetaModel.FK_ProductTbl_ProductCategoriesTbl" FromRole="ProductCategory" ToRole="Product" />
+    <NavigationProperty Name="ProductSubCategories" Relationship="BetaModel.FK_ProductSubCategoriesTbl_ProductCategoriesTbl" FromRole="ProductCategory" ToRole="ProductSubCategory" />
+  </EntityType>
+  <EntityType Name="ProductImage">
+    <Key>
+      <PropertyRef Name="ProductImageID" />
+    </Key>
+    <Property Name="ProductImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductImageName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProductImagePath" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="BetaModel.FK_ProducImgTbl_ProductTbl" FromRole="ProductImage" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="ProductSize">
+    <Key>
+      <PropertyRef Name="ProductSizeID" />
+    </Key>
+    <Property Name="ProductSizeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductSizeName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ProductSubCatID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ProductSubCategory" Relationship="BetaModel.FK_ProductSizeTbl_ProductCategoriesTbl" FromRole="ProductSize" ToRole="ProductSubCategory" />
+  </EntityType>
+  <EntityType Name="ProductSubCategory">
+    <Key>
+      <PropertyRef Name="ProductSubCatID" />
+    </Key>
+    <Property Name="ProductSubCatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductSubCatName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ProductCatID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="BetaModel.FK_ProductTbl_ProductSubCategoriesTbl" FromRole="ProductSubCategory" ToRole="Product" />
+    <NavigationProperty Name="ProductCategory" Relationship="BetaModel.FK_ProductSubCategoriesTbl_ProductCategoriesTbl" FromRole="ProductSubCategory" ToRole="ProductCategory" />
+    <NavigationProperty Name="ProductSizes" Relationship="BetaModel.FK_ProductSizeTbl_ProductCategoriesTbl" FromRole="ProductSubCategory" ToRole="ProductSize" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="StockID" />
+    </Key>
+    <Property Name="StockID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="ProductSizeName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="StockCount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="BetaModel.FK_ProductStock_Product" FromRole="Stock" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_Cart_Login">
+    <End Type="BetaModel.Login" Role="Login" Multiplicity="1" />
+    <End Type="BetaModel.Cart" Role="Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_Product">
+    <End Type="BetaModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="BetaModel.Cart" Role="Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GUID_Login">
+    <End Type="BetaModel.Login" Role="Login" Multiplicity="0..1" />
+    <End Type="BetaModel.GUID" Role="GUID" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GUID">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Login">
+    <End Type="BetaModel.Login" Role="Login" Multiplicity="0..1" />
+    <End Type="BetaModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Login">
+    <End Type="BetaModel.Login" Role="Login" Multiplicity="0..1" />
+    <End Type="BetaModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Product">
+    <End Type="BetaModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="BetaModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProducImgTbl_ProductTbl">
+    <End Type="BetaModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="BetaModel.ProductImage" Role="ProductImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductImage">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductStock_Product">
+    <End Type="BetaModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="BetaModel.Stock" Role="Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductTbl_ProductCategoriesTbl">
+    <End Type="BetaModel.ProductCategory" Role="ProductCategory" Multiplicity="1" />
+    <End Type="BetaModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategory">
+        <PropertyRef Name="ProductCatID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductCatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductTbl_ProductSubCategoriesTbl">
+    <End Type="BetaModel.ProductSubCategory" Role="ProductSubCategory" Multiplicity="1" />
+    <End Type="BetaModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductSubCategory">
+        <PropertyRef Name="ProductSubCatID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductSubCatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductSubCategoriesTbl_ProductCategoriesTbl">
+    <End Type="BetaModel.ProductCategory" Role="ProductCategory" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BetaModel.ProductSubCategory" Role="ProductSubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategory">
+        <PropertyRef Name="ProductCatID" />
+      </Principal>
+      <Dependent Role="ProductSubCategory">
+        <PropertyRef Name="ProductCatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductSizeTbl_ProductCategoriesTbl">
+    <End Type="BetaModel.ProductSubCategory" Role="ProductSubCategory" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BetaModel.ProductSize" Role="ProductSize" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductSubCategory">
+        <PropertyRef Name="ProductSubCatID" />
+      </Principal>
+      <Dependent Role="ProductSize">
+        <PropertyRef Name="ProductSubCatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Profile">
+    <Key>
+      <PropertyRef Name="ProfileID" />
+    </Key>
+    <Property Name="ProfileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="Login" Relationship="BetaModel.FK_Profile_Login" FromRole="Profile" ToRole="Login" />
+  </EntityType>
+  <Association Name="FK_Profile_Login">
+    <End Type="BetaModel.Login" Role="Login" Multiplicity="0..1" />
+    <End Type="BetaModel.Profile" Role="Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Profile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

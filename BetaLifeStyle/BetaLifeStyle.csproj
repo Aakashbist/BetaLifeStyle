@@ -156,6 +156,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\cart.png" />
+    <Content Include="Images\casual pants.jpg" />
+    <Content Include="Images\homepage.png" />
+    <Content Include="Images\login.png" />
+    <Content Include="Images\red watch.jpg" />
+    <Content Include="Images\skiny pants.jpg" />
+    <Content Include="Images\watch.jpg" />
+    <Content Include="Images\white-shirt.jpeg" />
+    <Content Include="Images\white-shirt2.jpeg" />
     <Content Include="Private\OrderHistory.aspx" />
     <Content Include="Private\OrderManagement.aspx" />
     <Content Include="Private\UserProfile.aspx" />

@@ -124,6 +124,14 @@
                                                     </asp:ListItem>
                                                     <asp:ListItem Value="Purple" Text="Purple">
                                                     </asp:ListItem>
+                                                     <asp:ListItem Value="White" Text="White">
+                                                    </asp:ListItem>
+                                                    <asp:ListItem Value="Grey" Text="Grey">
+                                                    </asp:ListItem>
+                                                    <asp:ListItem Value="Pink" Text="Pink">
+                                                    </asp:ListItem>
+                                                     <asp:ListItem Value="Mint" Text="Mint">
+                                                    </asp:ListItem>
                                                 </asp:DropDownList>
                                                 <asp:CompareValidator runat="server" ValueToCompare="Color" Operator="NotEqual" Type="String" ID="CmpColor" CssClass="label label-danger" SetFocusOnError="true" ErrorMessage="Please Select Color" ControlToValidate="drpColor" Display="Dynamic" ValidationGroup="Products"></asp:CompareValidator>
                                             </div>
