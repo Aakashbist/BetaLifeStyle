@@ -1,0 +1,280 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Beta.master.cs" Inherits="BetaLifeStyle.Beta" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ 
+    <title></title>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href=" https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link href="/Content/SiteStyle.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-3.1.1.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/JQMethod.js"></script>
+       <meta  charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager" runat="server" EnablePageMethods="true" />
+        <div class="navbar navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" runat="server" href="~/">Beta LifeStyle</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a runat="server" href="Home">Home</a></li>
+                    </ul>
+                    <asp:Panel ID="AdminPanel" runat="server" Visible="false">
+                        <ul class="nav navbar-nav" style="margin-right: 20px">
+                            <li class="dropdown clearfix">
+                                <%-- todo routing --%>
+                                <a class="dropdown-toggle" data-toggle="dropdown">Admin<span class="caret"></span></a>
+                                <ul class="dropdown-menu col-xs-12 col-sm-12" style="margin: auto; width: 250px;">
+                                    <li>
+                                        <a style="color: #333" href="/Private/UserManagement.aspx">UserManagement</a>
+                                    </li>
+                                    <li>
+                                        <a style="color: #333" href="/Private/ProductAdmin.aspx">Products</a>
+                                    </li>
+
+                                    <li>
+                                        <a style="color: #333" href="/Private/ProductCatagoryAdmin.aspx">Categories</a>
+                                    </li>
+                                      <li>
+                                        <a style="color: #333" href="/Private/OrderManagement.aspx">OrderManagement</a>
+                                    </li>
+
+                                    <% if (Session["UserRole"].ToString() == "SuperAdmin")
+                                        { %>
+                                    <li>
+                                        <a style="color: #333;" href="/Private/AddAdmin.aspx">Add Admin</a>
+                                    </li>
+                                    <% } %>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </asp:Panel>
+
+                    <asp:Panel ID="LoginPanel" runat="server" Visible="false">
+                        <ul class="nav navbar-nav navbar-right" style="margin-right: 20px">
+                            <li class="dropdown clearfix">
+                                <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
+                                <ul class="dropdown-menu col-xs-12 col-sm-12" style="margin: auto; width: 250px;">
+                                    <li class="container-fluid">
+
+                                        <div class="hidden-xs" id="LoginDropdown" style="color: #222222">
+                                            <h6><strong>Your Account</strong></h6>
+                                            <h6>Access Account and Manage Orders</h6>
+                                        </div>
+
+                                        <hr class="hidden-xs clearmp" />
+
+                                        <div style="padding-bottom: 10px; margin-bottom: 10px;">
+                                            <div class="row">
+                                                <div class="container-fluid">
+                                                    <input id="btnShowRegisterModal" class="btn btn-success btn-sm  col-sm-offset-0 col-sm-5" value="Sign Up" type="button" />
+                                                    <input id="btnShowModal" class="btn btn-info btn-sm col-sm-offset-1 col-sm-5" value="Login" type="button" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </asp:Panel>
+
+                    <asp:Panel ID="LogoutPanal" runat="server" Visible="false">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown clearfix">
+                                <%-- todo routing --%>
+                                <a class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"><span class="caret"></span></i></a>
+                                <ul class="dropdown-menu col-xs-12 col-sm-12" style="margin: auto; width: 250px;">
+                                    
+                                    <li>
+                                        <a style="color: #333" href="/Private/OrderHistory.aspx">OrderHistory</a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a style="color: #333" href="Private/UserProfile.aspx">User Profile</a>
+                                    </li>
+                                    <li>
+                                        <asp:LinkButton runat="server" ID="btnchangepassword" Text="ChangePassword"  ForeColor="Black" OnClick="btnchangepassword_Click"></asp:LinkButton>
+                                    </li>
+                                     <li>
+                                        <asp:LinkButton ID="btnlogout" runat="server" Text="Logout" ForeColor="Black" OnClick="btnlogout_Click" CausesValidation="false"></asp:LinkButton>
+                                    </li>
+                                   
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </asp:Panel>
+                    <%--For cart --%>
+                    <asp:Panel runat="server">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="clearfix">
+                                <a href="/Public/CartView.aspx">
+                                    <span class="glyphicon glyphicon-shopping-cart">
+                                        <asp:Label ID="lblCartNumber" runat="server" class="badge pull-right" Style="background: red; font: 9px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                                        </asp:Label>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </asp:Panel>
+                </div>
+            </div>
+        </div>
+        <div class="container clearfix">
+            <div class="container-fluid" style="margin-top: 60px">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+        <!-- Modal Register Starting -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="modal fade" tabindex="-1" id="RegisterModal"
+                        data-keyboard="false" <%--data-backdrop="static"--%>>
+                        <div class="vertical-alignment-helper">
+                            <div class="modal-dialog vertical-align-center">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="background-color: #2874F0">
+                                        <h4 class="modal-title" style="color: white">Register to Beta Lifestyle</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <div class="input-group ">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-user"></i></span>
+                                                <input class="form-control" id="TxtREmail" placeholder="email@example.com" />
+                                                <span class="glyphicon form-control-feedback" id="ems"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-lock"></i></span>
+                                                <input class="form-control" id="TxtRPassword" type="password" placeholder="Password" />
+                                                <span class="glyphicon form-control-feedback" id="ems2"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-lock"></i></span>
+                                                <input class="form-control" id="TxtRCPassword" type="password" placeholder="Password" />
+                                                <span class="glyphicon form-control-feedback" id="ems3"></span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="hidden" id="message"></label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="pull-right">
+                                            <input type="button" id="btnregister" value="Register" class="btn btn-success" />
+                                            <input type="button" id="btnHideRegisterModal" class="btn btn-danger" value="Close" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Ending -->
+
+        <!-- Modal for login and forgot password Starting -->
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="modal fade" tabindex="-1" id="loginModal"
+                        data-keyboard="false" <%--data-backdrop="static"--%>>
+                        <div class="vertical-alignment-helper">
+                            <div class="modal-dialog vertical-align-center">
+
+                                <%-- login modal starts --%>
+                                <div id="logins" class="modal-content">
+                                    <div class="modal-header" style="background-color: #2874F0">
+                                        <h4 class="modal-title" style="color: white">Login to Beta Lifestyle</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-user"></i></span>
+                                                <input class="form-control" id="TxtEmail" placeholder="email@example.com" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-lock"></i></span>
+                                                <input class="form-control" id="TxtPassword" maxlength="8" type="password" placeholder="Password" />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="hidden" id="messagelogin"></label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input id="btnforgot" class="btn btn-link btn-sm pull-left" value="Forget Password" type="button" />
+                                        <input type="button" id="btnsignin" value="SignIn" class="btn btn-primary" />
+                                        <input type="button" id="btnHideModal" class="btn btn-danger" value="Close" />
+                                    </div>
+                                </div>
+                                <%-- ForgetPassword model --%>
+                                <div id="ForgotPass" class="modal-content">
+                                    <div class="modal-header bg-primary">
+                                        <h4 class="modal-title">Forgot Password</h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-user"></i></span>
+                                                <input class="form-control" id="txtForgotEmail" placeholder="email@example.com" />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="hidden" id="messageforgetpassword"></label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input id="btnlogin" class="btn btn-link pull-left" value="Back To Login" type="button" />
+                                        <input type="button" id="forgetPassword" class="btn btn-info" value="Send" />
+                                        <input type="button" id="btnHideForgetPasswordModal" class="btn btn-danger" value="Close" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Ending -->
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="069479d5b478440594170f42ba002d5c" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="BetaModel.Cart" Width="1.5" PointX="7.5" PointY="10.25" />
+        <EntityTypeShape EntityType="BetaModel.GUID" Width="1.5" PointX="10.5" PointY="16.25" />
+        <EntityTypeShape EntityType="BetaModel.Login" Width="1.5" PointX="8.25" PointY="2.875" />
+        <EntityTypeShape EntityType="BetaModel.OrderDetail" Width="1.5" PointX="10.5" PointY="8.125" />
+        <EntityTypeShape EntityType="BetaModel.Payment" Width="1.5" PointX="10.5" PointY="19" />
+        <EntityTypeShape EntityType="BetaModel.Product" Width="1.5" PointX="5.25" PointY="7.5" />
+        <EntityTypeShape EntityType="BetaModel.ProductCategory" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="BetaModel.ProductImage" Width="1.5" PointX="7.5" PointY="16.5" />
+        <EntityTypeShape EntityType="BetaModel.ProductSize" Width="1.5" PointX="5.25" PointY="13.25" />
+        <EntityTypeShape EntityType="BetaModel.ProductSubCategory" Width="1.5" PointX="3" PointY="13" />
+        <EntityTypeShape EntityType="BetaModel.Stock" Width="1.5" PointX="7.5" PointY="7.125" />
+        <AssociationConnector Association="BetaModel.FK_Cart_Login" />
+        <AssociationConnector Association="BetaModel.FK_Cart_Product" />
+        <AssociationConnector Association="BetaModel.FK_GUID_Login" />
+        <AssociationConnector Association="BetaModel.FK_OrderDetails_Login" />
+        <AssociationConnector Association="BetaModel.FK_Payment_Login" />
+        <AssociationConnector Association="BetaModel.FK_OrderDetails_Product" />
+        <AssociationConnector Association="BetaModel.FK_ProducImgTbl_ProductTbl" />
+        <AssociationConnector Association="BetaModel.FK_ProductStock_Product" />
+        <AssociationConnector Association="BetaModel.FK_ProductTbl_ProductCategoriesTbl" />
+        <AssociationConnector Association="BetaModel.FK_ProductTbl_ProductSubCategoriesTbl" />
+        <AssociationConnector Association="BetaModel.FK_ProductSubCategoriesTbl_ProductCategoriesTbl" />
+        <AssociationConnector Association="BetaModel.FK_ProductSizeTbl_ProductCategoriesTbl" />
+        <EntityTypeShape EntityType="BetaModel.Profile" Width="1.5" PointX="10.5" PointY="3" />
+        <AssociationConnector Association="BetaModel.FK_Profile_Login" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

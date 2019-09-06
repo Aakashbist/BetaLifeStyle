@@ -1,0 +1,572 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{71862B6D-5B31-4FBD-B8C6-90A36526B95F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BetaLifeStyle</RootNamespace>
+    <AssemblyName>BetaLifeStyle</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44394</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <ApplicationInsightsResourceId>/subscriptions/bb00c101-23bc-46d3-9614-00433783137d/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/BetaLifeStyle</ApplicationInsightsResourceId>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="BetaDB-Deployment" Order="1">
+          <Destination Path="Data Source=SQL6002.site4now.net%3bInitial Catalog=DB_A2D817_Beta%3bPersist Security Info=True%3bUser ID=DB_A2D817_Beta_admin%3bPassword=###R0#1t%3bMultipleActiveResultSets=True%3bApplication Name=EntityFramework" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=WIN81\SQLEXPRESS%3bInitial Catalog=Beta%3bIntegrated Security=True%3bMultipleActiveResultSets=True%3bApplication Name=EntityFramework" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\BetaDB-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+      </Objects>
+    </PublishDatabaseSettings>
+    <PublishDatabases>false</PublishDatabases>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalAdaptivePaymentsSDK, Version=2.15.117.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPalAdaptivePaymentsSDK.2.15.117\lib\net20\PayPalAdaptivePaymentsSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalCoreSDK, Version=1.7.0.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPalCoreSDK.1.7.0\lib\net451\PayPalCoreSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\cart.png" />
+    <Content Include="Images\casual pants.jpg" />
+    <Content Include="Images\homepage.png" />
+    <Content Include="Images\login.png" />
+    <Content Include="Images\red watch.jpg" />
+    <Content Include="Images\skiny pants.jpg" />
+    <Content Include="Images\watch.jpg" />
+    <Content Include="Images\white-shirt.jpeg" />
+    <Content Include="Images\white-shirt2.jpeg" />
+    <Content Include="Private\OrderHistory.aspx" />
+    <Content Include="Private\OrderManagement.aspx" />
+    <Content Include="Private\UserProfile.aspx" />
+    <Content Include="Public\About.aspx" />
+    <Content Include="App_Data\script.sql" />
+    <Content Include="App_Start\About_Developers.html" />
+    <Content Include="Beta.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Beta.edmx</DependentUpon>
+      <LastGenOutput>Beta.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Beta.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Beta.edmx</DependentUpon>
+      <LastGenOutput>Beta.cs</LastGenOutput>
+    </Content>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\CartStyle.css" />
+    <Content Include="Content\jquery.bxslider.min.css" />
+    <Content Include="Content\SiteStyle.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="icons\100secure.png" />
+    <Content Include="icons\check.svg" />
+    <Content Include="Private\AddAdmin.aspx" />
+    <Content Include="Private\Checkout.aspx" />
+    <Content Include="Private\PayPalCancel.aspx" />
+    <Content Include="Private\PayPalProcess.aspx" />
+    <Content Include="Private\ProductAdmin.aspx" />
+    <Content Include="Private\ProductCatagoryAdmin.aspx" />
+    <Content Include="Private\UserManagement.aspx" />
+    <Content Include="ProductImage\ProImg_10_636482005865839230.jpeg" />
+    <Content Include="ProductImage\ProImg_11_636482006815503228.jpeg" />
+    <Content Include="ProductImage\ProImg_12_636482007491501121.jpeg" />
+    <Content Include="ProductImage\ProImg_13_636482008071384070.jpeg" />
+    <Content Include="ProductImage\ProImg_14_636482008979486256.jpeg" />
+    <Content Include="ProductImage\ProImg_15_636482009850430772.jpeg" />
+    <Content Include="ProductImage\ProImg_16_636482010344598514.jpeg" />
+    <Content Include="ProductImage\ProImg_1_636445437833636130.jpeg" />
+    <Content Include="ProductImage\ProImg_1_636445437834235551.jpeg" />
+    <Content Include="ProductImage\ProImg_1_636445437834435877.jpeg" />
+    <Content Include="ProductImage\ProImg_2_636400394098264156.png" />
+    <Content Include="ProductImage\ProImg_2_636400394100743977.png" />
+    <Content Include="ProductImage\ProImg_2_636450677982019749.jpeg" />
+    <Content Include="ProductImage\ProImg_2_636450677982859786.jpeg" />
+    <Content Include="ProductImage\ProImg_2_636450677983079798.jpeg" />
+    <Content Include="ProductImage\ProImg_3_636403867327099435.jpeg" />
+    <Content Include="ProductImage\ProImg_3_636403867327689505.jpeg" />
+    <Content Include="ProductImage\ProImg_3_636403867328159497.jpeg" />
+    <Content Include="ProductImage\ProImg_3_636450679678101633.png" />
+    <Content Include="ProductImage\ProImg_4_636421237227195747.jpeg" />
+    <Content Include="ProductImage\ProImg_4_636450680192084244.jpeg" />
+    <Content Include="ProductImage\ProImg_5_636421237963632892.jpeg" />
+    <Content Include="ProductImage\ProImg_5_636482001927960628.jpeg" />
+    <Content Include="ProductImage\ProImg_6_636422453578242722.jpeg" />
+    <Content Include="ProductImage\ProImg_6_636482002653283359.jpeg" />
+    <Content Include="ProductImage\ProImg_7_636482003230175586.jpeg" />
+    <Content Include="ProductImage\ProImg_8_636482003877380706.jpeg" />
+    <Content Include="ProductImage\ProImg_9_636482004554627627.jpeg" />
+    <Content Include="Public\Activationpage.aspx" />
+    <Content Include="Public\CartView.aspx" />
+    <Content Include="Public\ProductDetails.aspx" />
+    <Content Include="Public\ViewProducts.aspx" />
+    <Content Include="ProductImage\a1.jpeg" />
+    <Content Include="ProductImage\a10.jpeg" />
+    <Content Include="ProductImage\a2.jpeg" />
+    <Content Include="ProductImage\a3.jpeg" />
+    <Content Include="ProductImage\a4.jpeg" />
+    <Content Include="ProductImage\a5.jpeg" />
+    <Content Include="ProductImage\a6.jpeg" />
+    <Content Include="ProductImage\a7.jpeg" />
+    <Content Include="ProductImage\a8.jpeg" />
+    <Content Include="ProductImage\a9.jpeg" />
+    <Content Include="ProductImage\adsdemo.PNG" />
+    <Content Include="Public\Register.aspx" />
+    <Content Include="Private\ChangePassword.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\JQMethod.js" />
+    <Content Include="Scripts\jquery.bxslider.min.js" />
+    <Content Include="Scripts\OrderManagementJS.js" />
+    <Content Include="Scripts\Pagination.js" />
+    <Content Include="Scripts\ProductUI.js" />
+    <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Services\MethodHandler.aspx" />
+    <Content Include="Site.Mobile.Master" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="Beta.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Beta.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Beta.edmx.diagram">
+      <DependentUpon>Beta.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Private\About.aspx" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Beta.Master" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Public\TermsAndCondition.aspx" />
+    <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Private\OrderHistory.aspx.cs">
+      <DependentUpon>OrderHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\OrderHistory.aspx.designer.cs">
+      <DependentUpon>OrderHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\OrderManagement.aspx.cs">
+      <DependentUpon>OrderManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\OrderManagement.aspx.designer.cs">
+      <DependentUpon>OrderManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\UserProfile.aspx.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\UserProfile.aspx.designer.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.cs">
+      <DependentUpon>Beta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public\About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Public\About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Beta.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Beta.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Beta.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Beta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Beta.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Beta.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Cart.cs">
+      <DependentUpon>Beta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GUID.cs">
+      <DependentUpon>Beta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\Crypto.cs" />
+    <Compile Include="Helper\HelpUs.cs" />
+    <Compile Include="Login.cs">
+      <DependentUpon>Beta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NicePayment\PaymentHandler.cs" />
+    <Compile Include="NicePayment\PaypalItem.cs" />
+    <Compile Include="OrderDetail.cs">
+      <DependentUpon>Beta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Payment.cs">
+      <DependentUpon>Beta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Private\About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\AddAdmin.aspx.cs">
+      <DependentUpon>AddAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\AddAdmin.aspx.designer.cs">
+      <DependentUpon>AddAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\PayPalCancel.aspx.cs">
+      <DependentUpon>PayPalCancel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\PayPalCancel.aspx.designer.cs">
+      <DependentUpon>PayPalCancel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\PayPalProcess.aspx.cs">
+      <DependentUpon>PayPalProcess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\PayPalProcess.aspx.designer.cs">
+      <DependentUpon>PayPalProcess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\ProductAdmin.aspx.cs">
+      <DependentUpon>ProductAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\ProductAdmin.aspx.designer.cs">
+      <DependentUpon>ProductAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\ProductCatagoryAdmin.aspx.cs">
+      <DependentUpon>ProductCatagoryAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\ProductCatagoryAdmin.aspx.designer.cs">
+      <DependentUpon>ProductCatagoryAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\UserManagement.aspx.cs">
+      <DependentUpon>UserManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\UserManagement.aspx.designer.cs">
+      <DependentUpon>UserManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Public\Activationpage.aspx.cs">
+      <DependentUpon>Activationpage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Public\Activationpage.aspx.designer.cs">
+      <DependentUpon>Activationpage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Public\CartView.aspx.cs">
+      <DependentUpon>CartView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Public\CartView.aspx.designer.cs">
+      <DependentUpon>CartView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Public\ProductDetails.aspx.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Public\ProductDetails.aspx.designer.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Public\ViewProducts.aspx.cs">
+      <DependentUpon>ViewProducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Public\ViewProducts.aspx.designer.cs">
+      <DependentUpon>ViewProducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>Beta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductCategory.cs">
+      <DependentUpon>Beta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductImage.cs">
+      <DependentUpon>Beta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductSize.cs">
+      <DependentUpon>Beta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductSubCategory.cs">
+      <DependentUpon>Beta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Public\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Beta.Master.cs">
+      <DependentUpon>Beta.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Beta.Master.designer.cs">
+      <DependentUpon>Beta.Master</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Private\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CartHandler.cs" />
+    <Compile Include="Services\CookieHandler.cs" />
+    <Compile Include="Services\MethodHandler.aspx.cs">
+      <DependentUpon>MethodHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Services\MethodHandler.aspx.designer.cs">
+      <DependentUpon>MethodHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ProductHandler.cs" />
+    <Compile Include="Site.Mobile.Master.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Stock.cs">
+      <DependentUpon>Beta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public\TermsAndCondition.aspx.cs">
+      <DependentUpon>TermsAndCondition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Public\TermsAndCondition.aspx.designer.cs">
+      <DependentUpon>TermsAndCondition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51334</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44394/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

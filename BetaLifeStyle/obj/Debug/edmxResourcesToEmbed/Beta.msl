@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BetaModelStoreContainer" CdmEntityContainer="BetaDB">
+    <EntitySetMapping Name="Carts">
+      <EntityTypeMapping TypeName="BetaModel.Cart">
+        <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GUIDs">
+      <EntityTypeMapping TypeName="BetaModel.GUID">
+        <MappingFragment StoreEntitySet="GUID">
+          <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logins">
+      <EntityTypeMapping TypeName="BetaModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+          <ScalarProperty Name="Islocked" ColumnName="Islocked" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="BetaModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="BetaModel.Payment">
+        <MappingFragment StoreEntitySet="Payment">
+          <ScalarProperty Name="ShippingAddress" ColumnName="ShippingAddress" />
+          <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="Shipping" ColumnName="Shipping" />
+          <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="BetaModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="ProductSubCatID" ColumnName="ProductSubCatID" />
+          <ScalarProperty Name="ProductCatID" ColumnName="ProductCatID" />
+          <ScalarProperty Name="ProductAddDate" ColumnName="ProductAddDate" />
+          <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
+          <ScalarProperty Name="ProductWeight" ColumnName="ProductWeight" />
+          <ScalarProperty Name="ProductBrandName" ColumnName="ProductBrandName" />
+          <ScalarProperty Name="ProductDesc" ColumnName="ProductDesc" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductCategories">
+      <EntityTypeMapping TypeName="BetaModel.ProductCategory">
+        <MappingFragment StoreEntitySet="ProductCategories">
+          <ScalarProperty Name="ProductCatName" ColumnName="ProductCatName" />
+          <ScalarProperty Name="ProductCatID" ColumnName="ProductCatID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductImages">
+      <EntityTypeMapping TypeName="BetaModel.ProductImage">
+        <MappingFragment StoreEntitySet="ProductImages">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductImagePath" ColumnName="ProductImagePath" />
+          <ScalarProperty Name="ProductImageName" ColumnName="ProductImageName" />
+          <ScalarProperty Name="ProductImageID" ColumnName="ProductImageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductSizes">
+      <EntityTypeMapping TypeName="BetaModel.ProductSize">
+        <MappingFragment StoreEntitySet="ProductSizes">
+          <ScalarProperty Name="ProductSubCatID" ColumnName="ProductSubCatID" />
+          <ScalarProperty Name="ProductSizeName" ColumnName="ProductSizeName" />
+          <ScalarProperty Name="ProductSizeID" ColumnName="ProductSizeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductSubCategories">
+      <EntityTypeMapping TypeName="BetaModel.ProductSubCategory">
+        <MappingFragment StoreEntitySet="ProductSubCategories">
+          <ScalarProperty Name="ProductCatID" ColumnName="ProductCatID" />
+          <ScalarProperty Name="ProductSubCatName" ColumnName="ProductSubCatName" />
+          <ScalarProperty Name="ProductSubCatID" ColumnName="ProductSubCatID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stocks">
+      <EntityTypeMapping TypeName="BetaModel.Stock">
+        <MappingFragment StoreEntitySet="Stock">
+          <ScalarProperty Name="StockCount" ColumnName="StockCount" />
+          <ScalarProperty Name="ProductSizeName" ColumnName="ProductSizeName" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="StockID" ColumnName="StockID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Profiles">
+      <EntityTypeMapping TypeName="BetaModel.Profile">
+        <MappingFragment StoreEntitySet="Profile">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

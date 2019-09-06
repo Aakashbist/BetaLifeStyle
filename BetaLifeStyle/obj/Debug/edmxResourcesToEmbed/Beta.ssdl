@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BetaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="Size" Type="varchar" MaxLength="50" />
+    <Property Name="Quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="GUID">
+    <Key>
+      <PropertyRef Name="UniqueId" />
+    </Key>
+    <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="Purpose" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="Islocked" Type="bit" />
+    <Property Name="UserRole" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="OrderDetails">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="InvoiceNo" Type="varchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Size" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subtotal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Shipping" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Tax" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Status" Type="int" />
+    <Property Name="InvoiceNo" Type="varchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="AddedOn" Type="datetime" />
+    <Property Name="ShippingAddress" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ProductPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ProductDesc" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProductBrandName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ProductWeight" Type="varchar" MaxLength="10" />
+    <Property Name="ProductColor" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ProductAddDate" Type="date" Nullable="false" />
+    <Property Name="ProductCatID" Type="int" Nullable="false" />
+    <Property Name="ProductSubCatID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductCategories">
+    <Key>
+      <PropertyRef Name="ProductCatID" />
+    </Key>
+    <Property Name="ProductCatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductCatName" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductImages">
+    <Key>
+      <PropertyRef Name="ProductImageID" />
+    </Key>
+    <Property Name="ProductImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductImageName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductImagePath" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductSizes">
+    <Key>
+      <PropertyRef Name="ProductSizeID" />
+    </Key>
+    <Property Name="ProductSizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductSizeName" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="ProductSubCatID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductSubCategories">
+    <Key>
+      <PropertyRef Name="ProductSubCatID" />
+    </Key>
+    <Property Name="ProductSubCatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductSubCatName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ProductCatID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Profile">
+    <Key>
+      <PropertyRef Name="ProfileID" />
+    </Key>
+    <Property Name="ProfileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="PinCode" Type="varchar" MaxLength="50" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="StockID" />
+    </Key>
+    <Property Name="StockID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="ProductSizeName" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="StockCount" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Cart_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GUID_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+    <End Role="GUID" Type="Self.GUID" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GUID">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProducImgTbl_ProductTbl">
+    <End Role="Product" Type="Self.Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductImages" Type="Self.ProductImages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductImages">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductSizeTbl_ProductCategoriesTbl">
+    <End Role="ProductSubCategories" Type="Self.ProductSubCategories" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductSizes" Type="Self.ProductSizes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductSubCategories">
+        <PropertyRef Name="ProductSubCatID" />
+      </Principal>
+      <Dependent Role="ProductSizes">
+        <PropertyRef Name="ProductSubCatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductStock_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductSubCategoriesTbl_ProductCategoriesTbl">
+    <End Role="ProductCategories" Type="Self.ProductCategories" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductSubCategories" Type="Self.ProductSubCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategories">
+        <PropertyRef Name="ProductCatID" />
+      </Principal>
+      <Dependent Role="ProductSubCategories">
+        <PropertyRef Name="ProductCatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductTbl_ProductCategoriesTbl">
+    <End Role="ProductCategories" Type="Self.ProductCategories" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategories">
+        <PropertyRef Name="ProductCatID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductCatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductTbl_ProductSubCategoriesTbl">
+    <End Role="ProductSubCategories" Type="Self.ProductSubCategories" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductSubCategories">
+        <PropertyRef Name="ProductSubCatID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductSubCatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Profile_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+    <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Profile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BetaModelStoreContainer">
+    <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GUID" EntityType="Self.GUID" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductCategories" EntityType="Self.ProductCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductImages" EntityType="Self.ProductImages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductSizes" EntityType="Self.ProductSizes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductSubCategories" EntityType="Self.ProductSubCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Cart_Login" Association="Self.FK_Cart_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_Product" Association="Self.FK_Cart_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GUID_Login" Association="Self.FK_GUID_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="GUID" EntitySet="GUID" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Login" Association="Self.FK_OrderDetails_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Product" Association="Self.FK_OrderDetails_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Login" Association="Self.FK_Payment_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProducImgTbl_ProductTbl" Association="Self.FK_ProducImgTbl_ProductTbl">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductImages" EntitySet="ProductImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductSizeTbl_ProductCategoriesTbl" Association="Self.FK_ProductSizeTbl_ProductCategoriesTbl">
+      <End Role="ProductSubCategories" EntitySet="ProductSubCategories" />
+      <End Role="ProductSizes" EntitySet="ProductSizes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductStock_Product" Association="Self.FK_ProductStock_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductSubCategoriesTbl_ProductCategoriesTbl" Association="Self.FK_ProductSubCategoriesTbl_ProductCategoriesTbl">
+      <End Role="ProductCategories" EntitySet="ProductCategories" />
+      <End Role="ProductSubCategories" EntitySet="ProductSubCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductTbl_ProductCategoriesTbl" Association="Self.FK_ProductTbl_ProductCategoriesTbl">
+      <End Role="ProductCategories" EntitySet="ProductCategories" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductTbl_ProductSubCategoriesTbl" Association="Self.FK_ProductTbl_ProductSubCategoriesTbl">
+      <End Role="ProductSubCategories" EntitySet="ProductSubCategories" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Profile_Login" Association="Self.FK_Profile_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="Profile" EntitySet="Profile" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
